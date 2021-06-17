@@ -57,7 +57,7 @@ RUN apt-get update \
  && apt-get install -y python \
  # Install gdebi-core.
  && apt-get install -y gdebi-core \
- # Download rstudio 1.2 package for ubuntu 16.04 and install it.
+ # Download rstudio package for ubuntu and install it.
  && apt-get install -y wget \
  && wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1717-amd64.deb -O rstudio-server.deb \
  && gdebi -n rstudio-server.deb \
