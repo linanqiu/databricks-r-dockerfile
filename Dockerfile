@@ -59,6 +59,16 @@ RUN apt-get update \
  && apt-get install -y gdebi-core \
  # Download rstudio package for ubuntu and install it.
  && apt-get install -y wget \
- && wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1717-amd64.deb -O rstudio-server.deb \
+ && wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5042-amd64.deb -O rstudio-server.deb \
  && gdebi -n rstudio-server.deb \
  && rm rstudio-server.deb
+
+
+RUN apt-get update \
+  && apt-get install --yes openssh-server \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Warning: the created user has root permissions inside the container
+# Warning: you still need to start the ssh process with `sudo service ssh start`
+RUN useradd --create-home --shell /bin/bash --groups sudo ubuntu
